@@ -1,4 +1,4 @@
-# Dans le cadre de la réinvention de la formation en ingénierie, nous sommes en train de concevoir une plateforme de prise de notes. Cette plateforme génère un résumé des cours magistraux et sera également capable d'intégrer les notes personnelles des étudiants, pour créer à la fin des notes personnalisées. De plus, elle inclura un chatbot capable de répondre aux questions des élèves afin d'améliorer l'assimilation des cours.
+ **Dans le cadre de la réinvention de la formation en ingénierie, nous sommes en train de concevoir une plateforme de prise de notes. Cette plateforme génère un résumé des cours magistraux et sera également capable d'intégrer les notes personnelles des étudiants, pour créer à la fin des notes personnalisées. De plus, elle inclura un chatbot capable de répondre aux questions des élèves afin d'améliorer l'assimilation des cours.**
 
 *Rappot sur le cahier des charges* https://drive.google.com/file/d/1fqmPk9PRsUQ_tg818V3U0ziRk56KoEZT/view?usp=drivesdk 
 
