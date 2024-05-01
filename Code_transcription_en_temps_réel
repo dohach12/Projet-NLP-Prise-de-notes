@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Transcription Speech to Text</title>
+</head>
+<body>
+<h1>Transcription en Temps Réel</h1>
+<button id="start-button">Démarrer la transcription</button>
+<button id="stop-button">Arrêter la transcription</button>
+<button id="save-button">Sauvegarder la transcription</button>
+<p id="transcription"></p>
+
+<script>
+  var recognition = new webkitSpeechRecognition();
+  recognition.lang = 'fr-FR';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  var accumulated_transcript = ''; // Accumuler la transcription ici
+  var isRecording = false; // Contrôle si l'enregistrement est en cours
+
+  recognition.onresult = function(event) {
+  var interim_transcript = '';
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      accumulated_transcript += event.results[i][0].transcript + ' ';
+    } else {
+      interim_transcript += event.results[i][0].transcript;
+    }
+  }
+  document.getElementById('transcription').textContent = accumulated_transcript + interim_transcript;
+};
+
+  recognition.onend = function() {
+    if (isRecording) {
+      recognition.start();  // Redémarrer la reconnaissance seulement si enregistrement en cours
+    }
+  };
+
+  document.getElementById('start-button').addEventListener('click', function() {
+    isRecording = true;
+    recognition.start();
+  });
+
+  document.getElementById('stop-button').addEventListener('click', function() {
+    isRecording = false;
+    recognition.stop();
+  });
+
+  document.getElementById('save-button').addEventListener('click', function() {
+    var text = document.getElementById('transcription').textContent;
+    var blob = new Blob([text], { type: 'text/plain' });
+    var anchor = document.createElement('a');
+    anchor.download = "transcription.txt";
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target = '_blank';
+    anchor.style.display = 'none'; // just to be safe!
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  });
+
+</script>
+</body>
+</html>
